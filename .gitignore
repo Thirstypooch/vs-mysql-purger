@@ -1,0 +1,39 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment files with sensitive data
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+/logs
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*~
+
+# Test coverage
+*.profraw
+*.profdata
+/coverage
+
+# Temporary files
+/tmp
+*.tmp
+# Project folders to exclude
+docs/
+.claude/
+docker/

@@ -1,0 +1,65 @@
+[package]
+name = "log-sdk-purger"
+version = "1.0.0"
+edition = "2021"
+authors = ["Your Team"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+
+# Database
+sqlx = { version = "0.8", features = [
+    "runtime-tokio-rustls",
+    "mysql",
+    "chrono",
+    "uuid",
+    "migrate"
+] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# CLI and configuration
+clap = { version = "4.5", features = ["derive", "env"] }
+dotenv = "0.15"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Date/Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging and monitoring
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "fmt", "ansi"] }
+tracing-appender = "0.2"
+prometheus = { version = "0.13", features = ["process"] }
+axum = { version = "0.7", features = ["macros"] }
+
+# Utilities
+num_cpus = "1.16"
+parking_lot = "0.12"
+futures = "0.3"
+async-trait = "0.1"
+signal-hook = "0.3"
+signal-hook-tokio = { version = "0.3", features = ["futures-v0_3"] }
+humansize = "2.1"
+indicatif = "0.17"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["async_tokio"] }
+fake = "2.9"
+quickcheck = "1.0"
+quickcheck_macros = "1.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+strip = true
+panic = "abort"
+
+[profile.bench]
+inherits = "release"
